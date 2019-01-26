@@ -68,11 +68,14 @@ var arc = d3.arc()
 ///6. Render the sunburst
 
 //create path elements for each node in order of hierarchial data
-parentGroup.selectAll('path')
+var nodeGroup = parentGroup.selectAll('path')
     //returns hierarchy data in array form
     .data(hierarchialData.descendants())
     .enter()
-    .append('path')
+    .append('g');
+
+//Append the path element to g element
+nodeGroup.append('path')
     // depth calculated as distance of each node from center
     .attr('display', d => { return d.depth ? null : 'none'; })
     .attr('d', arc)
@@ -80,3 +83,21 @@ parentGroup.selectAll('path')
     .style("fill", d => {
         return color((d.children ? d : d.parent).data.name);
     });
+
+//Append the text element to g element
+nodeGroup.append('text')
+    // depth calculated as distance of each node from center
+    .text(d => d.parent ? d.data.name : '')
+    .attr('transform', function (d) {
+        return `translate(${arc.centroid(d)}) rotate(${computeTextRotation(d)})`;
+    })
+    .attr('dx', '-20')
+    .attr('dy', '.5em');
+
+function computeTextRotation(d) {
+    //calculate the angle (in degrees) of the label that will work for 1/2 of the labels.
+    var angle = (d.x0 + d.x1) / Math.PI * 90;
+
+    // Avoid upside-down labels
+    return (angle < 90 || angle > 270) ? angle : angle + 180;
+}
