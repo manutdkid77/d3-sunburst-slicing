@@ -24,6 +24,25 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var listItems = document.querySelectorAll('.list-item');
+        listItems.forEach(item => {
+            item.addEventListener('click', d => {
+                var listItem = d.currentTarget;
+                var chartID = listItem.getAttribute('data-chartid');
+                switch (chartID) {
+                    case "1":
+                        window.location.href = "sunburst-basic.html";
+                        break;
+
+                    default:
+                        console.log('nothing found');
+                        break;
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>
