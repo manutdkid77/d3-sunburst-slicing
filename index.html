@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sunburst Slicing</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
-
-        body{font-family: 'Ubuntu Condensed', sans-serif; font-size:16px; }
-    </style>
+    <link rel="stylesheet" href="styles/homepage.css">
 </head>
 
 <body>
+    <div id="overlay">
+        <div id="list-parent">
+            <div class="list-item" style="background:#27ae60;" data-chartid="1">
+                <p>Sunburst Basic</p>
+            </div>
 
-    <svg></svg>
+            <div class="list-item" style="background:tomato;" data-chartid="2">
+                <p>Sunburst Progress Arcs</p>
+            </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js" type="text/javascript"></script>
-    <script src="scripts/sunburst.js" type="text/javascript"></script>
+            <div class="list-item" style="background:#2980b9" data-chartid="3">
+                <p>Sunburst with Slicing Animation</p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
